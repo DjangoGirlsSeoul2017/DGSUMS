@@ -17,16 +17,11 @@ class Event(TimeStampModel):
 
     register_until = models.DateTimeField()
 
+    registered_users = models.ManyToManyField(User, related_name='registered_users')
+    attended_users = models.ManyToManyField(User, related_name='attended_users')
+
     def __str__(self):
         return self.title
-
-    @property
-    def registered_users(self):
-        return self.registered_events.all()
-
-    @property
-    def attended_users(self):
-        return self.attended_events.all()
 
     @property
     def can_register(self):
