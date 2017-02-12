@@ -154,8 +154,8 @@ media
 
 # Data
 envs.json
+envs_dev.json
 deploy.json
-bank_envs.json
 uploads/
 
 # MAC

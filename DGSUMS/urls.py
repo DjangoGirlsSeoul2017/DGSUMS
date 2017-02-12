@@ -16,9 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
+
 
 urlpatterns = [
+    url(r'^accounts/login/$', login,
+        {'template_name': 'login.html'}),
+    url(r'^accounts/logout/$', logout),
     url(r'^admin/', admin.site.urls),
+    url('', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:
