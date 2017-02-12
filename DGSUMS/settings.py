@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'social_django',
     'bootstrap3',
+    'rest_framework',
 
     # Django Apps
     'Events',
@@ -198,3 +199,11 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
+# Django REST Framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

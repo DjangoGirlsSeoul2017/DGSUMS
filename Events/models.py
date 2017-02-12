@@ -69,8 +69,24 @@ class Study(TimeStampModel):
     def study_weeks(self):
         return ((self.study_end - self.study_start).days / 7) + 1
 
+    @property
+    def can_register(self):
+        if (self.register_start < timezone.now() < self.register_end):
+            return True
+        return False
+
+    def if_user_registered(self, user_pk):
+        user = get_user_model().objects.get(pk=user_pk)
+        if user in self.registered_users:
+            return True
+        return False
+
     def __str__(self):
         return self.name
+
+
+class StudyImage(ImageModel):
+    study = models.ForeignKey(Study)
 
 
 class StudyTimes(TimeStampModel):
@@ -80,3 +96,8 @@ class StudyTimes(TimeStampModel):
 
     def __str__(self):
         return self.study.name + ': ' + str(self.times) + '회'
+
+
+class StudyTimesImage(ImageModel):
+    studytimes = models.ForeignKey(StudyTimes)
+
