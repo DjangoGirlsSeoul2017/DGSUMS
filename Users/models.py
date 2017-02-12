@@ -6,8 +6,9 @@ from django.conf import settings
 from Core.models import TimeStampModel
 
 
-class User(TimeStampModel):
+class UserInfo(TimeStampModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    personal_info_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user
+        return self.user.name
