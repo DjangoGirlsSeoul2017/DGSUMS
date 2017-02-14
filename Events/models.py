@@ -93,11 +93,7 @@ class StudyTimes(TimeStampModel):
     study = models.ForeignKey(Study)
     attended_users = models.ManyToManyField(settings.AUTH_USER_MODEL)
     times = models.PositiveSmallIntegerField()
+    image = models.ImageField(upload_to='%Y/%m/%d/', blank=True)
 
     def __str__(self):
         return self.study.name + ': ' + str(self.times) + '회'
-
-
-class StudyTimesImage(ImageModel):
-    studytimes = models.ForeignKey(StudyTimes)
-

@@ -4,9 +4,15 @@ cryptography==1.7.2
 defusedxml==0.5.0rc1
 Django==1.10.5
 django-bootstrap3==8.1.0
+django-braces==1.11.0
 django-debug-toolbar==1.6
+django-filter==1.0.1
+django-oauth-toolkit==0.11.0
+django-rest-framework-social-oauth2==1.0.5
+djangorestframework==3.5.4
 Fabric3==1.13.1.post1
 idna==2.2
+Markdown==2.6.8
 oauthlib==2.0.1
 olefile==0.44
 packaging==16.8

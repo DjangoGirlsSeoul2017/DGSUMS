@@ -65,9 +65,11 @@ INSTALLED_APPS = [
 
     # pip
     'debug_toolbar',
-    'social_django',
     'bootstrap3',
     'rest_framework',
+    'oauth2_provider',
+    'social_django',
+    'rest_framework_social_oauth2',
 
     # Django Apps
     'Events',
@@ -101,6 +103,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # Social Login with DjangoRestFramework
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -142,7 +148,8 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2', # Google
     'social_core.backends.facebook.FacebookOAuth2', # Facebook
-    'django.contrib.auth.backends.ModelBackend', # Django 기본 유저모델
+    'rest_framework_social_oauth2.backends.DjangoOAuth2', # Django Defalut User + REST
+    'django.contrib.auth.backends.ModelBackend', # Django Base User
 ]
 
 #SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
@@ -204,6 +211,13 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+        'rest_framework_social_oauth2.authentication.SocialAuthentication',
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'PAGE_SIZE': 10,
+
 }
+
+# DRF Social AUTH
+#DRFSO2_URL_NAMESPACE = 'social'
