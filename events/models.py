@@ -1,15 +1,15 @@
-# Django / Python
+# coding=utf-8
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
 # Core
-from Core.models import TimeStampModel
-from Core.models import ImageModel
+from core.models import TimeStampModel
+from core.models import ImageModel
 
 # Apps
-from Users.models import UserInfo
+from users.models import UserInfo
 
 
 class Event(TimeStampModel):
@@ -40,7 +40,7 @@ class Event(TimeStampModel):
 
     @property
     def can_register(self):
-        if (self.register_start < timezone.now() < self.register_end):
+        if self.register_start < timezone.now() < self.register_end:
             return True
         return False
 
@@ -71,7 +71,7 @@ class Study(TimeStampModel):
 
     @property
     def can_register(self):
-        if (self.register_start < timezone.now() < self.register_end):
+        if self.register_start < timezone.now() < self.register_end:
             return True
         return False
 

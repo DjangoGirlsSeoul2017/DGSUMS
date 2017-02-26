@@ -6,6 +6,7 @@ from django.core.exceptions import ImproperlyConfigured
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 # Env for dev / deploy
 def get_env(setting, envs):
     try:
@@ -17,14 +18,14 @@ def get_env(setting, envs):
 DEV_ENVS = os.path.join(BASE_DIR, "envs_dev.json")
 DEPLOY_ENVS = os.path.join(BASE_DIR, "envs.json")
 
-if os.path.exists(DEV_ENVS): # Develop Env
+if os.path.exists(DEV_ENVS):  # Develop Env
     env_file = open(DEV_ENVS)
-elif os.path.exists(DEPLOY_ENVS): # Deploy Env
+elif os.path.exists(DEPLOY_ENVS):  # Deploy Env
     env_file = open(DEPLOY_ENVS)
 else:
     env_file = None
 
-if env_file is None: # System environ
+if env_file is None:  # System environ
     try:
         FACEBOOK_KEY = os.environ['FACEBOOK_KEY']
         FACEBOOK_SECRET = os.environ['FACEBOOK_SECRET']
@@ -72,8 +73,8 @@ INSTALLED_APPS = [
     'rest_framework_social_oauth2',
 
     # Django Apps
-    'Events',
-    'Users',
+    'events.apps.EventsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -152,11 +153,11 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend', # Django Base User
 ]
 
-#SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
-## Social Login : KEY/SECRET
+# Social Login : KEY/SECRET
 
-### SocialLogin: Facebook
+# SocialLogin: Facebook
 SOCIAL_AUTH_FACEBOOK_KEY = FACEBOOK_KEY
 SOCIAL_AUTH_FACEBOOK_SECRET = FACEBOOK_SECRET
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
@@ -164,12 +165,12 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'fields': 'id, name, email'
 }
 
-#### SocialLogin: Google
+# SocialLogin: Google
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = GOOGLE_KEY
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = GOOGLE_SECRET
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
 
-## Social Login : Redirect
+# Social Login : Redirect
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 LOGIN_REDIRECT_URL='/'
@@ -220,4 +221,4 @@ REST_FRAMEWORK = {
 }
 
 # DRF Social AUTH
-#DRFSO2_URL_NAMESPACE = 'social'
+# DRFSO2_URL_NAMESPACE = 'social'

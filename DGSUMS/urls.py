@@ -10,8 +10,8 @@ urlpatterns = [
         {'template_name': 'login.html'}),
     url(r'^accounts/logout/$', logout),
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('Users.urls')),
-    url(r'^', include('Events.urls')),
+    url(r'^', include('users.urls')),
+    url(r'^', include('events.urls')),
     url(r'^', include('social_django.urls', namespace='social')),
     url(r'^auth/', include('rest_framework_social_oauth2.urls')),
 ]

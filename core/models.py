@@ -3,7 +3,7 @@ from django.db import models
 
 class TimeStampModel(models.Model):
     class Meta:
-        abstract=True
+        abstract = True
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -11,7 +11,7 @@ class TimeStampModel(models.Model):
 
 class ImageModel(TimeStampModel):
     class Meta:
-        abstract=True
+        abstract = True
 
     image = models.ImageField(upload_to='%Y/%m/%d/')
 

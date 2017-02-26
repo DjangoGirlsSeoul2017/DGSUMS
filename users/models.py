@@ -2,8 +2,8 @@
 from django.db import models
 from django.conf import settings
 
-# Core
-from Core.models import TimeStampModel
+# core
+from core.models import TimeStampModel
 
 
 class UserInfo(TimeStampModel):
